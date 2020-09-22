@@ -1,3 +1,14 @@
+// 实现一个日程安排函数，可以不断地登记行程安排，但不允许时间上出现三重重叠
+// *三重重叠的含义为：有某个日期，同时被三次登记覆盖到
+// *不考虑不同月份，并且假定每个月都是 31 天
+
+// const mySchedule = new Calendar();
+// mySchedule.book(1, 10) true
+// mySchedule.book(8, 14) true (8-10 双重重叠)
+// mySchedule.book(22, 30) true
+// mySchedule.book(2, 9) false (8-9 三重重叠)
+// mySchedule.book(18，20) true
+
 function mySchedule (){
     let schedule = new Array(32).fill(0)
     let threeDateArrReal = [] // 三次重叠数组
