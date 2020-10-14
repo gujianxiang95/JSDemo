@@ -8,7 +8,7 @@ function handleStr (str) {
     let endIndex =null
     for( let i = 0; i < str.length; i++ ){
         let char = str.charAt(i)
-        // if( beginIndex || beginIndex === 0  ){ //如果输入了其实位置，且循环到了起始位置之间 跳过本次循环
+        // if( beginIndex || beginIndex === 0  ){ //如果输入了起始位置，且循环到了起始位置之间 跳过本次循环
         //     if( i<=endIndex  && i>=beginIndex ){  //可以更改i 不需要你啦
         //         continue
         //     }

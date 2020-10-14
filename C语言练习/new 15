@@ -1,0 +1,110 @@
+ 2.5.2 需求
+ 
+ 权限 424
+ 1. 一级预算单位 
+ Home/listByFirstDept.json  
+ 入参{
+	private Long firstLevelId;//一级部门id
+    private Long twoLevelId;//二级部门id
+    private Long businessunitId;//事业部id
+    private Integer type;   //预算类型 type 1.月度资金计划 2.年度资金计划 3.年度预算
+    private String year;  //年份
+    private String month; //月份
+    private String startDocumentDate;// 凭证起始日期
+    private String endDocumentDate;// 凭证结束日期
+ }
+ 出参{
+		private BigDecimal actualValue; //实际收款/收入
+    private BigDecimal actualOut ;
+    private BigDecimal actuaDiff; //实际差值
+    private String  actualPer; //实际百分比
+
+    List<HomeQueryTableResp> homeQueryTableRespList;
+		{
+			private BigDecimal actualValue; //实际收款/收入
+			private BigDecimal actualOut ;
+			private BigDecimal actuaDiff; //实际差值
+			private String  actualPer; //实际百分比
+			private BigDecimal planValue; //计划收入、收款
+			private BigDecimal planOut;//计划资金流出
+			private BigDecimal planDiff; //计划差值
+			private String  planPer; //计划百分比
+
+			private String completeIn;// 完成率
+			private String completeOut;//
+			private String completeDiff;//
+			private String completeInPer;//
+			private String firstLevelName; //一级预算单位名称
+			private Long firstLevelId;
+			private String secondLevelName; //二级预算单位名称
+			private Long secondLevelId;
+			private String businessunitName; //事业部名称
+			private Long businessunitId;
+		}
+		
+
+    private  HomeQueryCostResp homeQueryCostResp; //费用分布
+	{
+	 /**
+     * 费用分布
+     */
+    private BigDecimal costClassCost; //开班费用
+    private BigDecimal costMarketCost; //市场费用
+    private  BigDecimal costSalaryCost; //薪酬成本
+    private  BigDecimal costOtherCost; //其他费用
+    private  BigDecimal costSeparateCost; //单独费用计算
+	}
+	
+	
+    private HomeQueryPlanResp homeQueryPlanResp; //预算使用情况
+	{
+	/**
+     * 预算使用情况统计
+     */
+    private BigDecimal planClassCost; //开班费用
+    private BigDecimal planMarketCost; //市场费用
+    private  BigDecimal planSalaryCost; //薪酬成本
+    private  BigDecimal planOtherCost; //其他费用
+    private  BigDecimal planSeparateCost; //单独费用计算
+	}
+    private  HomeQueryActualResp homeQueryActualResp; //实际收入/收款{
+	
+    /**
+     * 收入/收款比例
+     */
+    private BigDecimal classCost; //开班费用
+    private BigDecimal marketCost; //市场费用
+    private  BigDecimal salaryCost; //薪酬成本
+    private  BigDecimal otherCost; //其他费用
+    private  BigDecimal separateCost; //单独费用计算
+	}
+
+ }
+ 
+ 2.一级预算单位下面二级预算单位详情
+ 入参和上面一致
+ 出参{
+	List<HomeQueryTableResp> homeQueryTableRespList;
+		{
+			private BigDecimal actualValue; //实际收款/收入
+			private BigDecimal actualOut ;
+			private BigDecimal actuaDiff; //实际差值
+			private String  actualPer; //实际百分比
+			private BigDecimal planValue; //计划收入、收款
+			private BigDecimal planOut;//计划资金流出
+			private BigDecimal planDiff; //计划差值
+			private String  planPer; //计划百分比
+
+			private String completeIn;// 完成率
+			private String completeOut;//
+			private String completeDiff;//
+			private String completeInPer;//
+			private String firstLevelName; //一级预算单位名称
+			private Long firstLevelId;
+			private String secondLevelName; //二级预算单位名称
+			private Long secondLevelId;
+			private String businessunitName; //事业部名称
+			private Long businessunitId;
+		}
+ }
+ 
