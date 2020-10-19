@@ -41,21 +41,62 @@ class MyPromise {
             })
         }
     }
-    then(onFulFilled, onRejected ){
-        if(this.status === FULFILLED){
-            onFulFilled(this.succ_data)
-        }else if(this.status === REJECTED){
-            onRejected(this.err_data)
-        }else{
-            this.queue.push({resolve:onFulFilled,reject:onRejected})
-        }
+    then(onFulFilled, onRejected) {
+        let that = this
+        return new MyPromise((resFn,rejFn)=>{
+            if( that.status === FULFILLED ){
+                handleFulFilled(that.succ_data)
+            }else if(that.status === FULFILLED){
+                handleRejected(that.err_data)
+            }else {
+                that.queue.push({resolve:handleFulFilled, reject:handleRejected})
+            }
+            function handleFulFilled(val){
+                let returnVal = onFulFilled instanceof Function && onFulFilled(val) || val
+                // console.log('returnval' ,returnVal)
+                // return
+                if(returnVal['then'] instanceof Function){
+                    returnVal.then(res=>{
+                        resFn(res)
+                    },err=>{
+                        rejFn(err)
+                    })
+                }else {
+                    resFn(returnVal)
+                }
+            }
+            function handleRejected(val){
+                if(onRejected instanceof Function ){
+                    let returnVal = onFulFilled instanceof Function && onFulFilled(val) || val
+                    if(returnVal['then'] instanceof Function){
+                        returnVal.then(res=>{
+                            resFn(res)
+                        },err=>{
+                            rejFn(err)
+                        })
+                    }else {
+                        resFn(returnVal)
+                    }
+                }else {
+                    rejFn(val)
+                }
+            }
+        })
     }    
 }
 
-new MyPromise((resolve, reject) => {
+
+
+new MyPromise((resolve,rejected)=>{
     setTimeout(()=>{
-        resolve(222);
-    },2000)
-}).then(res => {
-    console.log('res',res);
-});
+        console.log(1000)
+        resolve(4)
+    },1000)
+}).then(res=>{
+    return new MyPromise((resolve,rejected)=>{
+       
+    })
+}).then(res=>{
+    // console.log('latest')
+   
+})
