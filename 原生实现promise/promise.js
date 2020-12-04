@@ -61,17 +61,15 @@ class MyPromise {
             }
             function handleFulFilled(val){
                 let returnVal = null
-                // console.log('returnval' ,returnVal)
-                // return
                 if(onFulFilled instanceof Function ){
                     try {
-                        returnVal = onFulFilled(val) || val
+                        returnVal = onFulFilled(val) || val   // 拿到码农要的promise
                     } catch (error) {
                         reject(error)
                         return
                     }
                 }
-                if(returnVal['then'] instanceof Function){
+                if(returnVal['then'] instanceof Function){ //拿到码农想resolve的值，并resolve
                     returnVal.then(res=>{
                         resFn(res)
                     },err=>{
@@ -84,13 +82,13 @@ class MyPromise {
             function handleRejected(val){
                 if(onRejected instanceof Function ){
                     try{
-                        let returnVal = onRejected(val) || val
+                        let returnVal = onRejected(val) || val // 拿到码农要的promise
                     }catch(err){
                         rejFn(err);
                         return;
                     }
-                    if(returnVal['then'] instanceof Function){
-                        returnVal.then(res=>{
+                    if(returnVal['then'] instanceof Function){ 
+                        returnVal.then(res=>{ //拿到码农想reject的值，并resolve
                             resFn(res)
                         },err=>{
                             rejFn(err)
